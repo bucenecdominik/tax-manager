@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Task(models.Model):
-    name = models.models.CharField(max_length=50)
+    name = models.models.CharField(max_length=255)
     custom_id = models.IntegerField()
     #money_made
 
@@ -12,5 +12,5 @@ class TimeReport(models.Model):
     created_at = models.DateField(auto_now_add=True)
     modified_at = models.DateField(auto_now_add=True)
     reported_for = models.DateField()
-    note = models.TextField()
+    note = models.TextField(null = True)
 
