@@ -3,7 +3,7 @@ from django.db import models
 
 class Task(models.Model):
     name = models.models.CharField(max_length=255)
-    custom_id = models.IntegerField()
+    custom_id = models.CharField()
     #money_made
 
 class TimeReport(models.Model):
