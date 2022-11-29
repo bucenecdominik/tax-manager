@@ -28,7 +28,6 @@ class RegisterView(CreateView):
         pass
 
 class TaskCreateView(CreateView):
-    #success_url = 'task_list'
     pass
 
 class TaskListView(ListView):
@@ -40,7 +39,6 @@ class TaskListView(ListView):
         pass
 
 class TaskUpdateView(UpdateView):
-    #succes_url = 'task_list'
     pass
 
 class TaskDeleteView(DeleteView):
