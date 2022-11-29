@@ -19,5 +19,6 @@ from taxes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/healthcheck/', views.health_check),
+    path('api/health-check/', views.health_check),
+    path('api/dummy-report-detail/<int:reportId>', views.dummy_report_detail),
 ]
