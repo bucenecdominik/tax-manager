@@ -17,6 +17,12 @@ def health_check(request):
     return Response(response)
 
 @api_view()
-def dummy_report_detail(request, reportId):
+def get_report_detail(request, reportId):
     report = get_object_or_404(TimeReport, pk=reportId)
     return Response(TimeReportSerializer(report).data)
+
+@api_view()
+def report_list(request):
+    qs = TimeReport.objects.select_related("task").all()
+    return Response(TimeReportSerializer(qs, many=True).data)
+
