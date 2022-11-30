@@ -14,7 +14,7 @@ class TimeReport(models.Model):
         deleted = 'DELETED'
 
     minutes_spent = models.PositiveIntegerField()
-    task_id = models.ForeignKey(Task, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     reported_for = models.DateField()
@@ -35,13 +35,3 @@ class ReportSummary(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     note = models.TextField(null=True, blank=True)
     status = models.CharField(max_length = 50, choices=State.choices, default=State.new)
-
-
-    
-
-    
-    
-
-
-
-
