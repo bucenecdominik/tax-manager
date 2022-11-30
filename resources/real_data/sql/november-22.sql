@@ -1,3 +1,7 @@
+-- Last propagation date: 22/11/30
+
+BEGIN;
+
 -- Tasks
 INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(2, '9063','Graph-service API pro mapy/dashboard');
 INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(3, '211','Other meetings');
@@ -79,3 +83,5 @@ INSERT INTO taxes_timereport(id, minutes_spent,created_at,modified_at,reported_f
 INSERT INTO taxes_timereport(id, minutes_spent,created_at,modified_at,reported_for,note,status,task_id) VALUES(58, 240, '2022-11-30 23:50:00','2022-11-30 23:50:00', '2022-11-29', 'Zakladni struktura a logika', 'NEW', 20);
 INSERT INTO taxes_timereport(id, minutes_spent,created_at,modified_at,reported_for,note,status,task_id) VALUES(59, 90, '2022-11-30 23:50:00','2022-11-30 23:50:00', '2022-11-30', 'Support pro Sama, zmeny v kodu na zaklade callu a konverzace na slacku', 'NEW', 18);
 INSERT INTO taxes_timereport(id, minutes_spent,created_at,modified_at,reported_for,note,status,task_id) VALUES(60, 450, '2022-11-30 23:50:00','2022-11-30 23:50:00', '2022-11-30', 'Dokoncnei logiky, testing, problemy s generikou, call s Tomem, dodefinovani, api client, mensi testing', 'NEW', 20);
+
+COMMIT;
