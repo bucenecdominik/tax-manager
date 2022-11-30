@@ -1,5 +1,5 @@
 from django.urls import path
-import views
+from .views import health_check, dummy_report_detail
 
 
 
