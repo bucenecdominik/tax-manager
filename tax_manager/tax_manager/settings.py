@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'tax_manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'taxmanagertest', 
+        'USER': 'taxmanagertest',
+        'PASSWORD': 'taxmanagertest',
+        'HOST': '46.28.110.196', 
+        'PORT': '5432',
     }
 }
 
@@ -132,13 +136,3 @@ REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'taxmanagertest', 
-        'USER': 'taxmanagertest',
-        'PASSWORD': 'taxmanagertest',
-        'HOST': '46.28.110.196', 
-        'PORT': '5432',
-    }
-}
