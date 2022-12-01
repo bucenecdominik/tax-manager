@@ -139,10 +139,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False
 }
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://46.28.110.196:3000']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://46.28.110.196:3000']
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'http://46.28.110.196:3000'
 ]
