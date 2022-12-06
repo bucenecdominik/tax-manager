@@ -28,4 +28,4 @@ jobs:
     - name: Run Tests
       run: |
         export DJANGO_DATABASE='pipeline'
-        python manage.py test --keepdb --database=pipeline
+        python manage.py test --keepdb
