@@ -27,4 +27,5 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
+        export DJANGO_DATABASE='pipeline'
         python manage.py test --keepdb --database=pipeline
