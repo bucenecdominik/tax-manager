@@ -1,8 +1,11 @@
-from django.urls import path
-from .views import *
+from django.urls import path, include
+from . import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('api/report', views.TimeReportViewSet)
 
 urlpatterns = [
-    path('api/health-check/', health_check),
-    path('api/report/<int:reportId>/', get_report_detail),
-    path('api/report/list/', report_list),
+    path('', include(router.urls)),
+    path('api/health-check/', views.health_check),
 ]

@@ -7,8 +7,15 @@ class SimpleTestCase(TestCase):
     def test_simple_math(self):
         self.assertEqual(2, 1+1)
 
+class HealthCheckTest(TestCase):
+    def test_health_check(self):
+        response = self.client.get('/api/health-check/')
+        print(f'response: {response}')
+        self.assertEqual(200, response.status_code)
+        self.assertTrue(response.data.get('success'))
 
-class SimpleTimeReportTest(TestCase):
+
+class TimeReportTest(TestCase):
     def test_getting_time_report_not_found(self):
         response = self.client.get('/api/report/5/')
         self.assertEqual(404, response.status_code)
@@ -28,9 +35,9 @@ class SimpleTimeReportTest(TestCase):
         report = self.create_time_report(task, 100, "Test1")
         report = self.create_time_report(task, round(10223 / 8), "gijdg")
 
-        response = self.client.get(f'/api/report/list/')
+        response = self.client.get(f'/api/report/')
         self.assertEqual(200, response.status_code)
-        self.assertEqual(TimeReportSerializer(TimeReport.objects.all(), many = True).data, response.data)
+        self.assertEqual(TimeReportSerializer(TimeReport.objects.all(), many = True).data, response.data.get('results'))
 
     def create_task(self, name):
         task = Task()

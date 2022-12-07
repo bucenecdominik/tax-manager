@@ -4,7 +4,9 @@ from django.contrib.postgres.fields import DateRangeField
 class Task(models.Model):
     name = models.CharField(max_length=255)
     custom_id = models.CharField(max_length=50)
-    #money_made = minutes_spent * user.money_per_hour
+
+    def __str__(self):
+        return f'{self.custom_id} - {self.name}'
 
 class TimeReport(models.Model):
     class State(models.TextChoices):

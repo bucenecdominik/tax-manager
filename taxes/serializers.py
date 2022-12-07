@@ -22,10 +22,14 @@ class TimeReportSerializer(serializers.ModelSerializer):
             'reported_for', 
             'note',
             'status',
-            "task"
+            "task",
+            "task_id"
             )
 
-    task = serializers.SerializerMethodField(method_name="get_task_object")
+    task = serializers.SerializerMethodField(method_name="get_task_object", read_only=True)
 
     def get_task_object(self, report: TimeReport):
         return TaskSerializer(report.task).data
+
+    def get_task_id(self, report: TimeReport):
+        return report.id
