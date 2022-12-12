@@ -3,25 +3,25 @@
 BEGIN;
 
 -- Tasks
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(2, '9063','Graph-service API pro mapy/dashboard');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(3, '211','Other meetings');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(4, '9104','Presmerovani zarizeni na ftp proxy');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(5, '9009','Jednoduchý export');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(6, '9054','Tech: filtr a sort');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(7, '9044','Použití nového notification-service API pro e-mail z ostatních služeb');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(8, '9107','Ticketing listing API');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(9, '9045','Notification-service interní API pro notifikace, transformace z notifikace na message');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(10, '9108','Ticketing - perzistence vazeb z konfigurace akcí');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(11, '9220','Appka: aktualizace osobních údajů končí internal server errorem');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(12, '9118','Ticketing - doplnění indexace názvů a stavu navázaných entit');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(13, '760','Administrativa');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(14, '9120','Ticketing - APIs pro update - dodělávky');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(15, '9211','Ticketing - doplnění FeedbackAction do DTO pro mobilní i admin API');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(16, '9263','Autorizace pro pohled statutára v appce');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(17, '9267','App BE: Pohled statutára - Příjmy');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(18, '9268','App BE: Pohled statutára - Výdaje');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(19, '9275','Subject BE interní API pro invite + password reset');
-INSERT INTO taxes_task(`id`, `custom_id`, `name`) VALUES(20, '9278','Association app API pro přidání oprávněného');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(2, '9063','Graph-service API pro mapy/dashboard');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(3, '211','Other meetings');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(4, '9104','Presmerovani zarizeni na ftp proxy');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(5, '9009','Jednoduchý export');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(6, '9054','Tech: filtr a sort');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(7, '9044','Použití nového notification-service API pro e-mail z ostatních služeb');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(8, '9107','Ticketing listing API');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(9, '9045','Notification-service interní API pro notifikace, transformace z notifikace na message');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(10, '9108','Ticketing - perzistence vazeb z konfigurace akcí');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(11, '9220','Appka: aktualizace osobních údajů končí internal server errorem');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(12, '9118','Ticketing - doplnění indexace názvů a stavu navázaných entit');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(13, '760','Administrativa');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(14, '9120','Ticketing - APIs pro update - dodělávky');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(15, '9211','Ticketing - doplnění FeedbackAction do DTO pro mobilní i admin API');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(16, '9263','Autorizace pro pohled statutára v appce');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(17, '9267','App BE: Pohled statutára - Příjmy');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(18, '9268','App BE: Pohled statutára - Výdaje');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(19, '9275','Subject BE interní API pro invite + password reset');
+INSERT INTO taxes_task(id, custom_id, name) VALUES(20, '9278','Association app API pro přidání oprávněného');
 
 -- Time reports
 INSERT INTO taxes_timereport(id, minutes_spent,created_at,modified_at,reported_for,note,status,task_id) VALUES(2, 540, '2022-11-30 23:50:00','2022-11-30 23:50:00', '2022-11-1', 'Mapping + ziskavani dat, prepsani queries, call s Tomem, debug a nekolikrat zmenena implementace + architektura', 'REPORTED', 2);
