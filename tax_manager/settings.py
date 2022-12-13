@@ -85,10 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tax_manager.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -153,13 +149,13 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
-   'ACCESS_TOKEN_LIFETIME': timedelta(days=1)
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=1) if DEBUG else timedelta(minutes=30)
 }
 
 DJOSER = {
     'SERIALIZERS': {
-        'user_create': 'core.serializers.UserCreateSerializer',
-        'current_user': 'core.serializers.UserGetSerializer',
+        'user_create': 'core.serializers.AuthUserCreateSerializer',
+        'current_user': 'core.serializers.AuthUserGetSerializer',
     }
 }
 
@@ -170,9 +166,15 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 AUTH_USER_MODEL = 'core.AuthUser'
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://46.28.110.196:3000']
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://46.28.110.196:3000',
+]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://46.28.110.196:3000']
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://46.28.110.196:3000',
+]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',

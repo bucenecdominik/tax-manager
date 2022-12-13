@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from datetime import datetime
 from rest_framework.viewsets import ModelViewSet
 from .models import TimeReport, User
-from .serializers import TimeReportSerializer
+from .serializers import TimeReportSerializer, TimeReportCreateSerializer
 from .filters import TimeReportFilter
 from rest_framework.response import Response
 from rest_framework.exceptions import status
@@ -32,18 +32,28 @@ class TimeReportViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def destroy(self, request, pk):
-        item = get_object_or_404(TimeReport, pk=pk)
+        item = self.get_queryset().filter(pk=pk).first()
+        if item is None:
+            return Response(f"No time report found for pk {pk}", status=status.HTTP_404_NOT_FOUND)
         item.status = TimeReport.State.deleted
         item.save()
-        return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)        
 
-    def get_queryset(self) -> str:
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return TimeReportCreateSerializer
+        return TimeReportSerializer
+
+    def get_serializer_context(self):
+        return {'user_id': self.request.user.id}
+
+    def get_queryset(self):
         user = self.request.user
         qs = TimeReport.objects.select_related("task").select_related("user")
 
         if user.is_staff:
             return qs.all()
 
-        (user_id, create) = User.objects.only('id').get_or_create(user = user.id)
+        (user_id, create) = User.objects.only('id').get_or_create(auth_user_id = user.id)
         return qs.filter(user = user_id).all()
     

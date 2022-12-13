@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from .models import TimeReport, Task
+
+from .models import TimeReport, Task, User
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,7 +24,6 @@ class TimeReportSerializer(serializers.ModelSerializer):
             'note',
             'status',
             "task",
-            "task_id",
             "user_id"
             )
 
@@ -32,8 +32,29 @@ class TimeReportSerializer(serializers.ModelSerializer):
     def get_task_object(self, report: TimeReport):
         return TaskSerializer(report.task).data
 
-    def get_task_id(self, report: TimeReport):
-        return report.id
-
     def get_user_id(self, report: TimeReport):
         return report.user.id
+
+class TimeReportCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TimeReport
+        fields = (
+            'id',
+            'minutes_spent',
+            'reported_for', 
+            'note',
+            'status',
+            'task_custom_id',
+            )
+    
+    task_custom_id = serializers.CharField()
+
+    def create(self, validated_data):
+        user = User.objects.get(auth_user_id = self.context['user_id'])
+        task = Task.objects.filter(custom_id = validated_data['task_custom_id']).filter(user = user.id).first()
+        
+        report = TimeReport(**validated_data)
+        report.user = user
+        report.task = task
+        report.save()
+        return report
