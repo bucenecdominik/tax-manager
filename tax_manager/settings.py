@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,9 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    
     'corsheaders',
     'rest_framework',
+    'djoser',
+
     'taxes',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -79,10 +84,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tax_manager.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -141,10 +142,39 @@ REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
     'PAGE_SIZE': 15,
     #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination', Probably not the best idea?
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://46.28.110.196:3000']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://46.28.110.196:3000']
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=1) if DEBUG else timedelta(minutes=30)
+}
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'core.serializers.AuthUserCreateSerializer',
+        'current_user': 'core.serializers.AuthUserGetSerializer',
+    }
+}
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+AUTH_USER_MODEL = 'core.AuthUser'
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://46.28.110.196:3000',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://46.28.110.196:3000',
+]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
